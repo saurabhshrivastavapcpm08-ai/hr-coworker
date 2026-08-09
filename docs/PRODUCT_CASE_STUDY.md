@@ -4,117 +4,103 @@
 
 > Tara is not just another AI tool—she's the junior teammate every recruiter wishes they had, handling the grunt work so humans can focus on judgment and conversations.
 
-**Interactive prototype:** run `cd prototype && npm run dev`, then open `/prototype`.
+**Interactive prototype:** `cd prototype && npm run dev` → `/prototype`
+
+Walk the loop: **Role brief → Shortlist → Outreach → Schedule → HM briefing → Activity log**.
 
 ---
 
 ## 1. Problem
 
-Across most teams, HR and recruitment are not held back by intent or effort, but by day-to-day workflows that are overloaded, fragmented, and heavily manual.
+Recruitment fails on overloaded, fragmented, manual workflows—not intent.
 
-### Major pain points
-
-1. **Too many roles, tools, and context switches** — Naukri, LinkedIn, ATS, email, Slack/Teams, WhatsApp, and drive-by manager pings.
-2. **Sourcing and screening at exhausting volume** — hundreds of applications; skim-reading means strong profiles go untouched.
-3. **Coordination and scheduling chaos** — mixed calendars (Outlook, Google, WhatsApp); afternoons spent confirming slots.
-4. **Outreach, personalization, and follow-ups** — personalization works, but second/third nudges slip first when the day gets hectic.
-5. **Data quality and reporting overhead** — weekly hiring reviews start with fixing stages and reconciling spreadsheets.
-6. **Balancing speed, quality, fairness, and experience** — human touches (thoughtful rejections, timely updates) quietly disappear.
+1. Too many roles / tools / context switches  
+2. Exhausting sourcing & screening volume  
+3. Scheduling chaos across calendars  
+4. Personalization & follow-ups that slip  
+5. Reporting / data-quality scramble  
+6. Speed vs quality vs fairness trade-offs that erase human touches  
 
 ---
 
-## 2. Insight & positioning
+## 2. Users & JTBD
 
-**Core principle:** Tara behaves like a junior recruiter—doing the legwork across systems, showing her work, and asking for judgment where it really matters.
-
-**Key differentiator:** Unlike ATS features or candidate chatbots, Tara orchestrates across Zoho, LinkedIn, Outlook, Slack, WhatsApp (and Naukri / internal mobility), acting as a **cross-tool junior recruiter**, not an in-product feature.
-
-### Competitive stance
-
-| Positioning | vs | Tara difference |
+| Persona | Job to be done | v1 posture |
 | --- | --- | --- |
-| AI coworker on top of Zoho + stack | Zoho Recruit + Zia | Cross-tool orchestration, not ATS-only AI |
-| Coordinator for recruiters | Paradox (Olivia) | Recruiter-facing first; candidate chat is optional later |
-| Operational TA coworker | Eightfold | Day-to-day actions (source, draft, brief) over talent-graph strategy |
-| Unifying agent on existing stack | hireEZ / TurboHire / etc. | One UX tied to "Today with Tara" tasks + explainable actions |
+| **Aditi · Recruiter (primary)** | Get from JD to trustworthy shortlist and keep threads moving without babysitting a bot | Control surface |
+| **Priya · Hiring manager** | Get plain-language pipeline truth she can act on | Beneficiary via briefings |
+| **Candidate (indirect)** | Timely, human-sounding outreach and clear next steps | Drafts only; human approves first touch |
 
-**India-first design:** WhatsApp-first communication, Naukri, multiple calendar systems, working hours and cultural tone.
-
----
-
-## 3. Solution (MVP / 0–3 months)
-
-Day-one bar: *"If Tara disappeared tomorrow, recruiters would feel it."*
-
-### Skillset
-
-1. **JD → shortlist** — Enable Tara on a role → editable role brief → multi-portal sourcing.
-2. **Explainable shortlists** — match reasons, risks, source; human decides.
-3. **Personalized outreach** — Outlook drafts, reply watching, "these N are interested."
-4. **Interview scheduling** — propose slots from calendars; confirm once; keep schedule overview tidy.
-5. **Daily summaries & briefings** — Tara Home standup + manager pipeline drafts.
-
-### Explicitly not in v1
-
-- Fully autonomous candidate chatbot on the career site
-- Auto-rejects or final hiring decisions
-- Over-engineered panel orchestration
-- Company-wide talent graph in month 3
-
-### Design principles
-
-- **Human-in-the-loop** for shortlist, outreach, scheduling, briefings
-- **Explainability first** — every recommendation + audit trail
-- **Cross-system orchestration** via MCP actions
-- **Continuous learning** from recruiter feedback
+North-star adoption signal: recruiters start the day in Tara and ask “what did Tara find?” before manual sourcing.
 
 ---
 
-## 4. User journeys (persona: Aditi, recruiter)
+## 3. Insight & positioning
 
-1. **JD chaos → clean shortlist** — Approve role brief; Tara fans out; review explainable shortlist with feedback ("too senior").
-2. **Outreach that doesn’t feel like spam** — Select → edit drafts → Approve & Send; Tara monitors replies and pings Slack.
-3. **Scheduling without back-and-forth hell** — Propose slots, confirm once, DM interviewers, remind candidates.
-4. **Day ends, story stays straight** — Tara Home standup + weekly pipeline briefing emails.
+**Core principle:** junior recruiter across systems — shows work, asks for judgment.
+
+**Differentiator:** cross-tool orchestration (Zoho, LinkedIn, Naukri, Outlook, Slack, WhatsApp), not an ATS feature or candidate chatbot.
+
+India-first: WhatsApp, Naukri, mixed calendars, working-hours & tone.
 
 ---
 
-## 5. Metrics
+## 4. Prioritization
 
-### Primary KPIs
+Scored on **recruiter hours returned × trust earned**.
+
+| Opportunity | v1 call |
+| --- | --- |
+| JD → explainable shortlist | Must |
+| Personalized outreach + reply watch | Must |
+| Interview slot proposal | Must |
+| HM pipeline briefing | Must |
+| Careers-site candidate chatbot | Not v1 |
+| Auto-reject / auto-stage | Never without human |
+| Company talent graph | Later |
+
+### Principles
+1. Coworker, not feature  
+2. Show the work  
+3. Humans own irreversible actions  
+4. Integrate, don’t replace  
+
+---
+
+## 5. Solution workflows (prototype)
+
+1. **Role brief** — approve must/nice/exclude before sourcing  
+2. **Explainable shortlist** — why / risk / source; accept or pass with reasons  
+3. **Outreach** — Outlook drafts + WhatsApp nudges; approve & send  
+4. **Schedule** — conflict-aware slots; one confirm → invites + Slack DMs  
+5. **HM briefing** — editable plain-language update  
+6. **Activity log** — MCP audit trail for trust & compliance  
+
+---
+
+## 6. Metrics
 
 | KPI | Target |
 | --- | --- |
-| Time-to-shortlist | ↓ 50% vs baseline |
-| Recruiter hours saved | 10–15 hrs / week |
-| Outreach response rate | > 40% (vs 15–25% typical) |
-| HM briefing satisfaction | 4.0+ / 5; 100% on-time |
+| Time-to-shortlist | ↓ 50% |
+| Recruiter hours saved | 10–15 / week |
+| Outreach response | > 40% |
+| HM briefing satisfaction | 4.0+ |
 
-### Secondary
-
-Shortlist acceptance rate, feedback incorporation speed, source diversity, uptime/error rate, audit completeness, bias flags, candidate NPS.
+Leading (pilot): shortlist acceptance ≥ 60%, shrinking briefing edits, zero silent stage moves.
 
 ---
 
-## 6. Rollout (trust relationship, not feature stacking)
+## 7. Risks
 
-| Phase | Scope | Success signal |
-| --- | --- | --- |
-| Month 1 Pilot | 2–3 recruiters, handful of roles | “I’d miss this if it went away” |
-| Months 2–3 | Larger TA slice | 5+ hrs/week saved; 60%+ shortlist acceptance |
-| Months 4–6 | New teams / geos | Governance + localization; no bias flags |
-| Months 6–12 | Default entry point | 80%+ start day in Tara |
+Trust/black-box → explainability + undo  
+Bias → ignore protected attrs + human gates  
+Adoption → opt-in pilot with volunteers  
+Integrations → draft-only writes first  
+Spam/channels → approve-first + templates  
 
 ---
 
-## 7. Prototype notes
+## 8. Rollout
 
-Three divergent UI directions explore the same brief:
-
-1. **Quiet Desk** — restrained, border-led daily tool
-2. **Standup Board** — narrative coworker briefing
-3. **Command Surface** — translucent materials + interruptible candidate sheet (Apple-style springs / velocity handoff)
-
-Libraries (curated): Motion, Zustand, Sonner, clsx, React Router.
-
-Motion policy: press feedback and occasional entrances only; no animation on high-frequency keyboard flips between variants.
+Month 1 pilot → months 2–3 broader TA → 4–6 new geos + governance → 6–12 Tara as default entry point.

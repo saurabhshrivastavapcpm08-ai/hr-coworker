@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 
 const sections = [
   { id: "problem", label: "Problem" },
+  { id: "users", label: "Users" },
   { id: "insight", label: "Insight" },
+  { id: "prioritize", label: "Prioritize" },
   { id: "solution", label: "Solution" },
   { id: "journeys", label: "Journeys" },
   { id: "metrics", label: "Metrics" },
+  { id: "risks", label: "Risks" },
   { id: "roadmap", label: "Roadmap" },
 ];
 
@@ -54,9 +57,9 @@ export function CaseStudy() {
             <div className="hero-panel">
               <div className="pulse" />
               <p className="panel-kicker">Tara Home · standup</p>
-              <p className="panel-line">Sourced 32 candidates for Backend Engineer; 9 ready for review.</p>
-              <p className="panel-line">Drafted outreach for 4 candidates — waiting on approve & send.</p>
-              <p className="panel-line">Pipeline briefings for 4 open roles drafted for hiring managers.</p>
+              <p className="panel-line">Role brief ready · Backend Engineer must-haves parsed from Zoho.</p>
+              <p className="panel-line">Sourced 32 candidates; 9 waiting on explainable shortlist review.</p>
+              <p className="panel-line">Outreach, scheduling, and HM briefing drafts queued for approval.</p>
             </div>
           </div>
         </section>
@@ -83,7 +86,37 @@ export function CaseStudy() {
           </div>
         </section>
 
-        <section id="insight" className="block alt">
+        <section id="users" className="block alt">
+          <h2>Who we’re building for</h2>
+          <p className="section-lede">Primary user is the recruiter. Everyone else is a beneficiary — not the control surface for v1.</p>
+          <div className="persona-grid">
+            {[
+              [
+                "Aditi · Recruiter (primary)",
+                "JTBD: When I’m drowning in tabs and pings, help me get from JD to a trustworthy shortlist and keep every thread moving — without making me babysit a bot.",
+                "Success look: starts the day in Tara; asks “what did Tara find?” before manual sourcing.",
+              ],
+              [
+                "Priya · Hiring manager",
+                "JTBD: When I need pipeline truth, give me a plain-language briefing I can act on — not a spreadsheet archaeology session.",
+                "Success look: references Tara briefings in planning; stops pinging Aditi for status.",
+              ],
+              [
+                "Candidate (indirect)",
+                "JTBD: When I’m exploring roles, get timely, human-sounding outreach and clear next steps.",
+                "Guardrail: Tara drafts; humans approve first-touch outreach in v1.",
+              ],
+            ].map(([t, j, s]) => (
+              <article key={t}>
+                <h3>{t}</h3>
+                <p>{j}</p>
+                <p className="muted-strong">{s}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="insight" className="block">
           <h2>The insight</h2>
           <blockquote>
             Tara is not another ATS feature or candidate chatbot. She’s a cross-tool junior recruiter — she does the
@@ -105,16 +138,63 @@ export function CaseStudy() {
           </div>
         </section>
 
+        <section id="prioritize" className="block alt">
+          <h2>How we prioritized</h2>
+          <p className="section-lede">
+            v1 is scored on recruiter hours returned × trust earned — not feature breadth.
+          </p>
+          <div className="prio-table" role="table" aria-label="Prioritization">
+            <div className="prio-head" role="row">
+              <span>Opportunity</span>
+              <span>Impact</span>
+              <span>Trust risk</span>
+              <span>v1 call</span>
+            </div>
+            {[
+              ["JD → explainable shortlist", "Very high", "Medium", "Must ship"],
+              ["Personalized outreach + reply watch", "High", "Medium", "Must ship"],
+              ["Interview slot proposal", "High", "Low", "Must ship"],
+              ["HM pipeline briefing", "High", "Low", "Must ship"],
+              ["Candidate chatbot on careers site", "Medium", "High", "Not v1"],
+              ["Auto-reject / auto-stage moves", "Medium", "Very high", "Never without human"],
+              ["Company-wide talent graph", "Long-term", "Medium", "Later"],
+            ].map((row) => (
+              <div className="prio-row" role="row" key={row[0]}>
+                {row.map((cell) => (
+                  <span key={cell}>{cell}</span>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="design-principles">
+            <h3>Product principles</h3>
+            <ol>
+              <li>
+                <strong>Coworker, not feature.</strong> Tara narrates work, asks for judgment, and improves from feedback.
+              </li>
+              <li>
+                <strong>Show the work.</strong> Every recommendation carries why / risk / source + an activity trail.
+              </li>
+              <li>
+                <strong>Humans own irreversible actions.</strong> Shortlist moves, first outreach, booking, and briefings need approval.
+              </li>
+              <li>
+                <strong>Integrate, don’t replace.</strong> Live where recruiters already work; orchestrate via MCP.
+              </li>
+            </ol>
+          </div>
+        </section>
+
         <section id="solution" className="block">
           <h2>Day-1 skillset</h2>
           <p className="section-lede">Ship a junior who is insanely fast — not a platform launch.</p>
           <ol className="skills">
             {[
-              ["JD → shortlist", "Enable Tara on a role; she builds a role brief and hunts across ATS, LinkedIn, Naukri, and internal mobility."],
-              ["Explainable picks", "Every candidate ships with why / risks / source. Humans still click the irreversible buttons."],
-              ["Personalized outreach", "Drafts land in Outlook; Tara watches replies and surfaces who’s interested."],
-              ["Interview logistics", "Propose slots from Outlook calendars; confirm once; invites + Slack DMs go out."],
-              ["Daily story", "Tara Home narrates what moved, what’s stuck, and drafts manager briefings."],
+              ["Role brief", "Parse the JD into must / nice / exclude. Recruiter approves before sourcing fans out."],
+              ["Explainable shortlist", "Multi-portal hunt with why / risks / source. Accept or pass with structured feedback."],
+              ["Personalized outreach", "Outlook drafts + WhatsApp nudges. Approve & send; Tara watches replies."],
+              ["Interview logistics", "Propose conflict-aware slots; one confirm creates invites + Slack DMs."],
+              ["HM briefing + activity log", "Plain-language pipeline story + full MCP audit trail for trust."],
             ].map(([t, d], i) => (
               <li key={t}>
                 <span className="num">{i + 1}</span>
@@ -128,13 +208,16 @@ export function CaseStudy() {
         </section>
 
         <section id="journeys" className="block alt">
-          <h2>Four journeys with Aditi</h2>
+          <h2>Prototype workflows</h2>
+          <p className="section-lede">Walk the happy path as Aditi — each step is human-in-the-loop.</p>
           <div className="journey-grid">
             {[
-              ["01", "JD chaos → clean shortlist", "Approve a role brief; Tara fans out via MCP; review an explainable shortlist."],
-              ["02", "Outreach that isn’t spam", "Select candidates; edit drafts; Approve & Send. Tara monitors threads."],
-              ["03", "Scheduling without hell", "Propose slots, confirm once, keep Interview Schedule Overview clean."],
-              ["04", "Day ends, story stays straight", "Standup on Tara Home + pipeline briefings managers can actually read."],
+              ["01", "Approve role brief", "Confirm must-haves before Tara sources across Zoho, LinkedIn, Naukri, Workday."],
+              ["02", "Review shortlist", "Open explainability, accept / pass with reasons Tara can learn from."],
+              ["03", "Approve outreach", "Edit voice if needed; nothing sends without explicit approval."],
+              ["04", "Confirm schedule", "Pick a recommended slot; soft conflicts are visible, not hidden."],
+              ["05", "Send HM briefing", "Edit the draft; ship a manager-ready update in one click."],
+              ["06", "Audit activity", "See every tool call — the foundation for compliance and autonomy."],
             ].map(([n, t, d]) => (
               <article key={n}>
                 <div className="j-num">{n}</div>
@@ -162,9 +245,31 @@ export function CaseStudy() {
               </article>
             ))}
           </div>
+          <div className="leading-indicators">
+            <h3>Leading indicators (pilot)</h3>
+            <p>Shortlist acceptance ≥ 60% · undo rate on accepts trending down · briefing edits shrinking week over week · zero silent stage moves.</p>
+          </div>
         </section>
 
-        <section id="roadmap" className="block alt">
+        <section id="risks" className="block alt">
+          <h2>Risks & mitigations</h2>
+          <div className="risk-grid">
+            {[
+              ["Trust / black-box fear", "Explainability panels + activity log + undo on judgment actions."],
+              ["Bias amplification", "Ignore protected attributes; weekly log review; human approval before irreversible moves."],
+              ["Adoption friction", "Start opt-in per role; prove hours saved with 2–3 volunteer recruiters."],
+              ["Integration fragility", "Graceful errors, draft-only writes first, clear fallback to manual ATS."],
+              ["Spam / channel risk", "Approve-first outreach; WhatsApp template compliance; rate limits."],
+            ].map(([t, d]) => (
+              <article key={t}>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="roadmap" className="block">
           <h2>Trust-first rollout</h2>
           <div className="roadmap">
             {[
@@ -191,10 +296,10 @@ export function CaseStudy() {
           </div>
         </section>
 
-        <section className="block close">
+        <section className="block close alt">
           <h2>Prototype the coworker</h2>
           <p>
-            Three interaction directions for Tara Home → explainable shortlist → outreach approval. Flip with keys 1–3.
+            Full loop: role brief → shortlist → outreach → schedule → HM briefing → activity log. Flip visual directions with keys 1–3.
           </p>
           <Link className="cta solid" to="/prototype">
             Launch prototype
@@ -214,9 +319,7 @@ export function CaseStudy() {
 
 const caseCss = `
   .case { color: var(--ink); }
-  .skip {
-    position: absolute; left: -999px; top: 0;
-  }
+  .skip { position: absolute; left: -999px; top: 0; }
   .skip:focus { left: 12px; top: 12px; background: #fff; padding: 8px 12px; z-index: 10; }
   .case-nav {
     position: sticky; top: 0; z-index: 20;
@@ -232,8 +335,8 @@ const caseCss = `
     letter-spacing: -0.04em;
     font-size: 1.35rem;
   }
-  .case-nav nav { display: flex; gap: 14px; flex: 1; flex-wrap: wrap; }
-  .case-nav a { text-decoration: none; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+  .case-nav nav { display: flex; gap: 12px; flex: 1; flex-wrap: wrap; }
+  .case-nav a { text-decoration: none; font-size: 12px; color: var(--ink-soft); font-weight: 600; }
   .cta {
     text-decoration: none;
     font-weight: 700;
@@ -304,22 +407,23 @@ const caseCss = `
   .block { padding: 72px 22px; max-width: 1100px; margin: 0 auto; }
   .block.alt { max-width: none; padding-left: max(22px, calc(50vw - 550px)); padding-right: max(22px, calc(50vw - 550px)); background: rgba(255,255,255,0.45); border-block: 1px solid var(--line); }
   .block h2 { font-family: var(--font-display); letter-spacing: -0.04em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 10px; }
-  .section-lede { color: var(--ink-soft); font-size: 1.15rem; max-width: 48ch; }
+  .section-lede { color: var(--ink-soft); font-size: 1.15rem; max-width: 52ch; }
   .success-quote { font-family: var(--font-display); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
-  .pain-grid, .insight-row, .journey-grid, .metric-grid, .roadmap {
+  .pain-grid, .insight-row, .journey-grid, .metric-grid, .roadmap, .persona-grid, .risk-grid {
     display: grid; gap: 16px; margin-top: 28px;
   }
-  .pain-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-  .pain-grid article, .journey-grid article, .metric-grid article, .roadmap article {
+  .pain-grid, .persona-grid, .risk-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .pain-grid article, .journey-grid article, .metric-grid article, .roadmap article, .persona-grid article, .risk-grid article {
     padding: 18px 0;
     border-top: 1px solid var(--line);
   }
-  .pain-grid h3, .insight-row h3, .journey-grid h3, .metric-grid h3, .roadmap h3, .skills h3 {
+  .pain-grid h3, .insight-row h3, .journey-grid h3, .metric-grid h3, .roadmap h3, .skills h3, .persona-grid h3, .risk-grid h3, .design-principles h3, .leading-indicators h3, .not-doing h3 {
     margin: 0 0 6px; font-size: 1.05rem; letter-spacing: -0.02em;
   }
-  .pain-grid p, .insight-row p, .journey-grid p, .metric-grid p, .roadmap p, .skills p {
+  .pain-grid p, .insight-row p, .journey-grid p, .metric-grid p, .roadmap p, .skills p, .persona-grid p, .risk-grid p, .leading-indicators p {
     margin: 0; color: var(--ink-soft); line-height: 1.45;
   }
+  .muted-strong { margin-top: 10px !important; color: var(--ink) !important; font-weight: 600; }
   .insight-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
   blockquote {
     margin: 18px 0 0;
@@ -331,6 +435,19 @@ const caseCss = `
     line-height: 1.25;
     max-width: 22ch;
   }
+  .prio-table { margin-top: 24px; border-top: 1px solid var(--line); }
+  .prio-head, .prio-row {
+    display: grid;
+    grid-template-columns: 1.6fr 0.7fr 0.8fr 0.9fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .prio-head { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
+  .design-principles { margin-top: 28px; }
+  .design-principles ol { color: var(--ink-soft); line-height: 1.55; padding-left: 18px; }
+  .design-principles strong { color: var(--ink); }
   .skills { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; }
   .skills li { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: start; }
   .num {
@@ -339,10 +456,11 @@ const caseCss = `
     background: var(--accent-soft); color: var(--accent);
     font-family: var(--font-display); font-weight: 800;
   }
-  .journey-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .journey-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .j-num { font-family: var(--font-display); font-size: 2rem; letter-spacing: -0.04em; color: var(--accent); }
   .metric-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
   .metric-val { font-family: var(--font-display); font-size: 2rem; letter-spacing: -0.04em; font-weight: 800; }
+  .leading-indicators { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); }
   .roadmap { grid-template-columns: repeat(4, minmax(0,1fr)); }
   .when { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
   .not-doing { margin-top: 36px; }
@@ -357,11 +475,13 @@ const caseCss = `
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-visual { min-height: 260px; }
     .hero-panel { position: relative; inset: auto; width: 100%; }
-    .pain-grid, .insight-row, .metric-grid, .roadmap { grid-template-columns: 1fr 1fr; }
+    .pain-grid, .insight-row, .metric-grid, .roadmap, .persona-grid, .risk-grid, .journey-grid { grid-template-columns: 1fr 1fr; }
+    .prio-head, .prio-row { grid-template-columns: 1fr 1fr; }
     .case-nav nav { display: none; }
   }
   @media (max-width: 560px) {
-    .pain-grid, .insight-row, .journey-grid, .metric-grid, .roadmap { grid-template-columns: 1fr; }
+    .pain-grid, .insight-row, .journey-grid, .metric-grid, .roadmap, .persona-grid, .risk-grid { grid-template-columns: 1fr; }
+    .prio-head, .prio-row { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-panel, .pulse { animation: none; }

@@ -19,8 +19,24 @@ export function PrototypePage() {
           zIndex: 50,
           display: "flex",
           gap: 8,
+          alignItems: "center",
         }}
       >
+        <span
+          style={{
+            display: "none",
+            fontSize: 12,
+            color: "var(--ink-soft)",
+            background: "rgba(255,255,255,0.85)",
+            border: "1px solid var(--line)",
+            borderRadius: 999,
+            padding: "8px 12px",
+            backdropFilter: "blur(12px)",
+          }}
+          className="proto-tip"
+        >
+          Tip: start at Role brief → Shortlist → Outreach
+        </span>
         <Link
           to="/"
           style={{
@@ -44,6 +60,12 @@ export function PrototypePage() {
 
       <VariantPicker />
       <Toaster position="top-center" richColors closeButton />
+
+      <style>{`
+        @media (min-width: 900px) {
+          .proto-tip { display: inline-flex !important; }
+        }
+      `}</style>
     </>
   );
 }
