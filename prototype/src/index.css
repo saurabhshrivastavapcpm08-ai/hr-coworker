@@ -1,0 +1,125 @@
+:root {
+  --ink: #141820;
+  --ink-soft: #3a4254;
+  --mist: #eef1f4;
+  --paper: #f7f8fa;
+  --line: rgba(20, 24, 32, 0.1);
+  --accent: #2a6b5a;
+  --accent-soft: #d8ebe4;
+  --warn: #9a5b1f;
+  --danger: #9b3b3b;
+  --good: #2a6b5a;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --font-ui: "Figtree", system-ui, sans-serif;
+  --font-display: "Syne", "Figtree", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--mist);
+  font-family: var(--font-ui);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(42, 107, 90, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(58, 66, 84, 0.08), transparent 50%),
+    linear-gradient(180deg, #f4f6f8 0%, #e9eef2 100%);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+  transition: transform 120ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Variant picker chrome — fixed, not a design contestant */
+.variant-picker {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(20, 24, 32, 0.88);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 12px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.variant-picker button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+
+.variant-picker button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.variant-picker .hint {
+  align-self: center;
+  padding: 0 8px 0 4px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .variant-picker .hint {
+    display: none;
+  }
+}
